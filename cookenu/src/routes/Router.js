@@ -6,18 +6,16 @@ import RecipesListPage from "../pages/RecipesListPage/index"
 import RecipeDetailPage from "../pages/RecipeDetailPage/index"
 import AddRecipesPage from "../pages/AddRecipesPage/index"
 import ErrorPage from "../pages/ErrorPage/index"
-import Header from "../components/Header"
 
-const Router = () => {
+const Router = ({ setRightButtonText}) => {
     return (
-        <BrowserRouter>
-            <Header />
+
             <Switch>
                 <Route exact path="/login">
-                    <LoginPage />
+                    <LoginPage setRightButtonText={setRightButtonText}/>
                 </Route>
                 <Route exact path="/cadastro">
-                    <SingUpPage />
+                    <SingUpPage setRightButtonText={setRightButtonText}/>
                 </Route>
                 <Route exact path="/">
                     <RecipesListPage />
@@ -32,7 +30,6 @@ const Router = () => {
                     <ErrorPage />
                 </Route>
             </Switch>
-        </BrowserRouter>
     )
 }
 

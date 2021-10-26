@@ -5,14 +5,20 @@ import { Button, TextField } from "@material-ui/core"
 import useForm from "../../hooks/useForm"
 import { useHistory } from "react-router"
 import { goToSingUp } from "../../routes/coordinator"
+import {login} from "../../services/user"
+import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
-const LoginPage = () => {
+const LoginPage = ({setRightButtonText}) => {
+    useUnprotectedPage()
     const history = useHistory()
     const [form, handleInputChange, clear] = useForm({ email: "", password: "" })
 
     const onSubmitForm = (event) => {
         event.preventDefault()
+        login(form, clear, history, setRightButtonText)
     }
+
+    
     return (
         <ScreenContainer>
             <LogoImage src={logo} />
