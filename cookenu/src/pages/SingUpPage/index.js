@@ -1,21 +1,22 @@
 import { Button, TextField } from "@material-ui/core"
-import React from "react"
+import React, {useState} from "react"
 import { useHistory } from "react-router"
 import useForm from "../../hooks/useForm"
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 import { singUp } from "../../services/user"
 import { InputsContainer, ScreenContainer } from "../LoginPage/styled"
 import {SingUpFormContainer} from "./styled"
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const SingUpPage = ({setRightButtonText}) =>{
     useUnprotectedPage()
     const history= useHistory()
-
+    const [isLoading, setIsLoading] = useState(false)
     const [form, handleInputChange, clear] = useForm({name: "", email:"", password:""})
 
     const onSubmitForm = (event) =>{
         event.preventDefault()
-        singUp(form, clear, history, setRightButtonText)
+        singUp(form, clear, history, setRightButtonText, setIsLoading)
     }
     return(
         <ScreenContainer>
@@ -65,7 +66,7 @@ const SingUpPage = ({setRightButtonText}) =>{
                      type={'submit'}
                      fullWidth
                     >
-                        Fazer Cadastro
+                        {isLoading ? <CircularProgress color={"inherit"} size={24}/> : <>Fazer Cadastro</>}
                     </Button>
                 </SingUpFormContainer>
 

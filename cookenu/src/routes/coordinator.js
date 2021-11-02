@@ -12,7 +12,7 @@ export const goToRecipesList = (history) =>{
 }
 
 export const goToRecipeDetail = (history,id) =>{
-    history.push(`/detalhe/receita/${id}`)
+    history.push(`/detalhe/${id}`)
 }
 
 export const goToAddRecipes = (history) =>{

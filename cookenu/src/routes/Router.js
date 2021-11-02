@@ -23,7 +23,7 @@ const Router = ({ setRightButtonText}) => {
                 <Route exact path="/adicionar/receitas">
                     <AddRecipesPage />
                 </Route>
-                <Route exact path="/detalhe/receita/:id">
+                <Route exact path="/detalhe/:id">
                     <RecipeDetailPage />
                 </Route>
                 <Route>

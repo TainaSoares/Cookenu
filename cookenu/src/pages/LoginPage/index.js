@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { ScreenContainer, LogoImage, InputsContainer, SingUpBottonContainer } from "./styled"
 import logo from "../../assets/logo.jpg"
 import { Button, TextField } from "@material-ui/core"
@@ -7,15 +7,17 @@ import { useHistory } from "react-router"
 import { goToSingUp } from "../../routes/coordinator"
 import {login} from "../../services/user"
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 const LoginPage = ({setRightButtonText}) => {
     useUnprotectedPage()
     const history = useHistory()
     const [form, handleInputChange, clear] = useForm({ email: "", password: "" })
+    const [isLoading, setIsLoading] = useState(false)
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        login(form, clear, history, setRightButtonText)
+        login(form, clear, history, setRightButtonText,setIsLoading)
     }
 
     
@@ -52,7 +54,7 @@ const LoginPage = ({setRightButtonText}) => {
                         variant={"contained"}
                         color={"primary"}
                     >
-                        Login
+                        {isLoading ? <CircularProgress color={"inherit"} size={24}/> : <>Login</>}
                     </Button>
                 </form>
 
